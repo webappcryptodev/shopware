@@ -1,0 +1,23 @@
+parameters:
+    level: 8
+    paths:
+        - ./src
+        - ./src/Service/ApplePayDirect
+    excludes_analyse:
+        - ./src/Resources/app/administration/node_modules/*
+        - ./src/Resources/app/storefront/node_modules/*
+        - ./src/Controller/*
+        - ./src/Handler/*
+        - ./src/Helper/*
+        - ./src/Resources/*
+        - ./src/Service/*
+        - ./src/Storefront/*
+        - ./src/Subscriber/*
+        # legacy code that is not working with abstract/interface changes
+        - ./src/Compatibility/Storefront/Route/PaymentMethodRoute/Voucher/HideVoucherPaymentMethodRoute63.php
+        - ./src/Compatibility/Storefront/Route/PaymentMethodRoute/Voucher/HideVoucherPaymentMethodRoute62.php
+
+services:
+    - class: MolliePayments\PHPStan\Rules\NoManufacturerRule
+      tags:
+        - phpstan.rules.rule
